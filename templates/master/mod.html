@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" href="/static/css/web_hosts.css">
+    {% block title %}{% endblock %}
+
+</head>
+<body>
+    <!--顶部外框开始-->
+	<nav class="pag-head">
+        <div class="logo left">
+            <img src="/static/img/admin_logo.png" alt="">
+		</div>
+        <!--顶部菜单外框开始-->
+		<div class="meun_top">
+
+            <!--顶部菜单开始-->
+            <div class="left">
+                <a href="/index" class="meuns_top">主页</a>
+                <a href="" class="meuns_top">顶部菜单二</a>
+                <a href="" class="meuns_top">顶部菜单三</a>
+                <a href="" class="meuns_top">顶部菜单四</a>
+                <a href="" class="meuns_top">顶部菜单五</a>
+                <a href="" class="meuns_top">顶部菜单六</a>
+            </div>
+            <!--顶部菜单结束-->
+
+
+            <!--用户信息开始-->
+            <div class="user right">
+                <a href="" class="meuns_top" id="loginname">{{ username }}</a>
+                <div class="img left">
+                   <a href=""  id="a-img">
+                       <img src="/static/img/user_login.jpg" alt="">
+                   </a>
+                </div>
+
+                <!--用户信息菜单-->
+			    <div class="user-menu">
+                    <form action="#" method="GET">
+                        <a href="">我的资料</a>
+                        <input type="text" name="username" class="hide" value="{{ username }}">
+                        <input id='submit' type="submit" value="注销">
+                    </form>
+			    </div>
+
+            </div>
+            <!--用户信息结束-->
+
+		</div>
+        <!--顶部菜单外框开始-->
+        <!--清除DIV开始-->
+		<div class="clear_div">
+		</div>
+        <!--清除DIV开始-->
+	</nav>
+    <!--顶部外框结束-->
+
+    <!--下方大框开始-->
+	<div class="pag-cent">
+        {% block left_menus %}{% endblock %}
+		<!--左边菜单-->
+    <!--
+		<aside class="left">
+			<div class="item">
+	            <div id="i1"  class="meuns">分组管理</div>
+		            <div class="meun_cent">
+		                <div><a href="">主机分组</a></div>
+		                <div><a href="">用户分组</a></div>
+		            </div>
+		        </div>
+
+	        <div class="item">
+	            <div id="i2"  class="meuns">设置</div>
+	            <div class="meun_cent hide">
+	                <div>添加分组</div>
+	                <div>添加用户</div>
+
+	            </div>
+	        </div>
+
+	        <div class="item">
+	            <div id="i3"  class="meuns">菜单3</div>
+	            <div class="meun_cent hide">
+	                <div>内容3</div>
+	                <div>内容3</div>
+	                <div>内容3</div>
+	                <div>内容3</div>
+	            </div>
+	        </div>
+
+	        <div class="item">
+	            <div id="i4" class="meuns">菜单4</div>
+	            <div class="meun_cent hide">
+	                <div>内容4</div>
+	                <div>内容4</div>
+	                <div>内容4</div>
+	                <div>内容4</div>
+
+	            </div>
+
+        	</div>
+
+		</aside>
+    -->
+
+
+		<!--右边内容-->
+		<div class="content left">
+			<div class="content_right left">
+				{% block content %}{% endblock %}
+			</div>
+
+
+		</div>
+
+	</div>
+    <!--下方大框结束-->
+
+    <footer></footer>
+
+    <!--返回顶部-->
+	<div class="pa-top" onclick="topy();"></div>
+    {% block botton %}
+
+    {% endblock %}
+
+<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+
+        //注销
+        $('#zx').click(function(){
+            $(this).submit()
+            $.cookie('the_cookie', '', { expires: -1 }); // 删除 cookie
+        })
+
+
+		//左侧菜单js 点击函数
+		$('.meuns').click(function(){
+			//当前点击的标签
+			$(this).next().removeClass('hide');//找到下一个标签  移除样式
+			$(this).parent().siblings().find('.meun_cent').addClass('hide')//获取父级,的同级所有兄弟标签 ,查找 其所有下级的类名,添加样式
+		})
+
+		//返回顶部
+		function topy(){
+			document.body.scrollTop=0;
+		}
+
+        //单个勾选
+		$('#tb tr td').delegate('input[type="checkbox"]','click',function  () {
+			console.log($(this).prop('checked'));
+			if($('#ed').attr('as')&& $(this).prop('checked')){
+				edi_a(this);
+			}else if($('#ed').attr('as')&& $(this).prop('checked')==false){
+				edi_b(this);
+			}
+		})
+        //全选
+        $('#all').click(function (){
+			$(':checkbox').prop('checked',true).each(function () {
+
+				if ($('#ed').attr('as')&& $(this).attr('as')=='true') {//判断是否是编辑模式,,
+					edi_a(this);
+				}
+
+			});
+
+		})
+
+		//取消
+		$('#remov').click(function (){
+			$(':checkbox').prop('checked',false).each(function () {
+
+				if ($('#ed').attr('as')&& $(this).attr('as')=='false') {
+					edi_b(this);
+				}
+			})
+		})
+
+		//反选
+		//通过 each循环  三元运算  操作 写法
+		$('#rest').click(function (){
+			$('#tb :checkbox').each(function(){
+				var v=$(this).prop('checked')?false:true;//获取值
+				$(this).prop("checked",v);//赋于checkbox
+				if(v==true){//判断是否是勾选   勾选再进行判断
+					if ($('#ed').attr('as')&& $(this).attr('as')=='true') {//如果是编辑模式  并且 处于锁定状态
+						edi_a(this);//进入编辑
+					}
+
+				}else{
+					if ($('#ed').attr('as')&& $(this).attr('as')=='false') {//如果是编辑模式  并且 处于非锁定状态
+
+						edi_b(this);//退出编辑
+					}
+				}
+			})
+
+		})
+	</script>
+    {% block js %}
+
+    {% endblock %}
+</body>
+</html>

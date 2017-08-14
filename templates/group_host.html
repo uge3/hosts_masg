@@ -1,0 +1,106 @@
+{% extends "master/mod.html" %}
+<!--头部-->
+{% block title %}
+<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/static/css/modify.css">
+{% endblock %}
+
+
+<!--中间内容-->
+{% block content %}
+
+    <div class="hosts" style="margin-top: 70px;margin-left: 150px ">
+        <div class="right-menu">
+
+
+        </div>
+
+        <div style="float: left; ">
+
+            <table border="1" id="tab">
+            <caption>主机分组操作--加入</caption>
+                <thead>
+                <tr>
+{#                    <th>选择</th>#}
+                    <th>ID</th>
+                    <th>主机名</th>
+                    <th>所属分组</th>
+                    <th>选择分组</th>
+                    <th>分组操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="tb">
+
+                {% for row in host_list %}
+                    <form action="#" method="POST">
+                        <tr>
+                            <input  style='display: none' name='host_id' type='text' value='{{ row.id }}'>
+{#                            <td><input type="checkbox" as='true'></td>#}
+                            <td tag='id'>&nbsp;{{ row.id }}&nbsp;</td>
+                            <td tag='hostname'>&nbsp; {{ row.hostname }}&nbsp;</td>
+                            <td tag='group'>
+                                {% for i in row.group %}
+                                    &nbsp;{{ i.groupname }}&nbsp;|
+                                {% endfor %}
+                            </td>
+                            <td>
+
+                                <select name="" id="group_set">
+                                    {% for row in group_list %}
+                                        <option value="{{ row.id }}">{{ row.groupname }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </td>
+                            <td>
+
+                                <input type="submit"  class="submits" value="加入分组">|
+
+                                <input  style='display: none' name='groups_id' type='text' value=''>
+                            </td>
+
+                        </tr>
+                    </form>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+    <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+{#                <button type="button" class="btn btn-default" id="zj">增加</button>#}
+                <a href="/group_host"><input type="button" id="news" value="刷新"></a>
+                <a href=""><button type="button" class="gb">关闭</button></a>
+
+            </div>
+    </div>
+
+
+
+
+{% endblock %}
+
+<!--JS内容-->
+{% block js %}
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+
+        $('#tb tr td').delegate('.submits','click',function () {
+            groups=$(this).parent().prev().find('select').val();//获取分组
+            s=$(this).next().val(groups);
+
+        })
+
+        $('.gb').click(function(){
+            window.close();
+        })
+
+    </script>
+{% endblock %}

@@ -1,0 +1,215 @@
+
+
+/*logo 框*/
+
+.logo{
+    margin: 0 auto;
+    top: 50px;
+    left: 10px;
+    width: 960px;
+    height: 80px;
+}
+
+/*外边大框*/
+.oustd{
+    margin: 0 auto;
+    width: 960px;
+}
+/* 登陆框*/
+
+.rest{
+
+    border: 5px solid #dddddd;
+    top: 150px;
+    width: 960px;
+    height: 400px;
+}
+/*左边*/
+.rest_left{
+    /*background-repeat: no-repeat;
+    */
+    float: left;
+    width: 450px;
+    height: 400px;
+    /*border: 1px solid red;*/
+    text-align: center;
+
+}
+.rest_left a{
+    /*background-image: url(/static/img/admin.gif);*/
+    background-repeat: no-repeat;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 315px;
+    width: 315px;
+    height: 315px;
+    margin-top: 45px;
+
+    /*border: 1px solid green;*/
+}
+.rest_left a img{
+    width: 400px;
+    height: 300px;
+    margin-left: -35px;
+}
+#indexs{
+    display: inline;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+}
+
+
+/*右边*/
+.rest_right{
+    position: relative;
+    width: 505px;
+    height: 400px;
+    /*border: 1px solid blueviolet;*/
+    float: right;
+}
+.rest_right input{
+    width: 260px;
+    height: 30px;
+    padding-right: 35px;
+}
+span{
+    color: red;
+
+}
+/*登陆表单*/
+.users{
+    margin-top: 55px;
+    padding-top:5px ;
+
+    clear: both;
+
+}
+.users_u{
+    margin:70px 10px;
+}
+.users_user{
+    position: relative;
+    float: left;
+    width: 300px;
+    line-height: inherit;
+    /*border: 1px solid blue;*/
+}
+
+.sp{
+    display: inline-block;
+    line-height: 30px;
+    width: 100px;
+    float: left;
+    /*border: 3px solid black;*/
+}
+.sp-1{
+    height: 30px;
+    width: 100px;
+}
+.sp label{
+    float: right;
+}
+/*输入框 小图标*/
+#img-user,#img-pwd{
+    position: absolute;
+    background-image: url(/static/img/user.jpg);
+    background-position: -86px -150px;
+    height: 25px;
+    width: 25px;
+    /*border: 1px solid red;*/
+    right: 5px;
+    top: 5px;
+    display: inline-block;
+}
+#img-pwd{
+    background-position: -275px -320px;
+}
+/*验证码*/
+#yzm{
+    float: left;
+    width: 70px;
+    height: 30px;
+}
+#yzm_b{
+    display: none;
+}
+#yzm_a{
+
+    line-height: 30px;
+    float: left;
+    width: 70px;
+    height: 30px;
+    background-position-x: -25px;
+    background-position-y: 5px;
+    background-color: #dddddd;
+    margin: 0 0 0 15px;
+    padding: 0 0 ;
+    font-style: inherit;
+    text-decoration: none;
+    color :red;
+    /*display: inline-block;
+    line-height: 45px;*/
+}
+
+.auto_left{
+    float: left;
+    font-size: 12px;
+    padding-right: 15px;
+}
+#check_left{
+    display: inline;
+    width: 15px;
+    height: 15px;
+}
+#auto_logo{
+    color: black;
+}
+
+/*登陆按钮*/
+#logoing,#logoing input,.rest-q{
+    margin:0;
+    padding: 0;
+    background-color: red;
+    width: 220px;
+    /*margin: 0 auto;*/
+    text-align: center;
+    display: inline-block;
+    line-height: 30px;
+    color: white;
+}
+#span1{
+    font-size: 12px;
+    padding: 15px;
+    line-height: 30px;
+
+}
+/*免费注册*/
+.rest-q{
+    width: 100px;
+    height: 30px;
+    background-color: green;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+
+/**/
+.div_float {
+    clear: both;
+}
+/*下方*/
+.footer{
+    margin: 0 auto;
+    top: 560px;
+    width: 960px;
+    text-align: center;
+}
+
+#logoing a,.rest-q a{
+
+    text-decoration: none;
+    /*去下划线*/
+    color: white;
+}
+

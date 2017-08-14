@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+        <link rel="stylesheet" href="../static/css/commons.css">
+
+	</head>
+	<body>
+		<div class="logo"><a href="#"><img src="/static/img/admin_logo.png"/></a></div>
+
+		<div class="oustd">
+
+			<!--登陆框-->
+
+                <div class="rest">
+                    <!--左边-->
+                    {% block logo_img %}
+
+                    {% endblock %}
+
+                    <!--右边-->
+                    {% block logins %}
+                    
+                    {% endblock %}
+
+
+                </div>
+
+
+
+			<div class="div_float"></div>
+
+		</div>
+
+
+		<!--下方-->
+		<footer class="footer">
+				<p>Copyright ©晋江金玛国际酒店. All Rights Reserved.</p>
+		</footer>
+       	<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+       	<script type="text/javascript">
+            //随机码
+       		$(document).ready(function() {
+			   //x上限，y下限
+			    var x = 9;
+			    var y = 0;
+			    var rand = parseInt(Math.random() * (x - y + 1) + y);
+			    var rand1 = parseInt(Math.random() * (x - y + 1) + y);
+			    var rand2 = parseInt(Math.random() * (x - y + 1) + y);
+			    var rand3 = parseInt(Math.random() * (x - y + 1) + y);
+                var rand4=String(rand)+String(rand1)+String(rand2)+String(rand3);
+			   $("#yzm_b").val(rand4);
+			   $("#yzm_a").text(rand4);
+			   //alert(rand)
+			})
+       	</script>
+	</body>
+</html>

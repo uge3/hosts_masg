@@ -1,0 +1,78 @@
+{% extends "master/mod.html" %}
+<!--头部-->
+{% block title %}
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/modify.css">
+{% endblock %}
+
+
+<!--中间内容-->
+{% block content %}
+    <div class="hosts" style="margin-top: 70px;margin-left: 150px ">
+        <div class="right-menu">
+
+
+        </div>
+
+        <div style="float: left; ">
+
+            <table border="1" id="tab">
+            <caption>用户操作--删除</caption>
+                <thead>
+                <tr>
+{#                    <th>选择</th>#}
+                    <th>ID</th>
+                    <th>用户名</th>
+                    <th>操作</th>
+
+                </tr>
+                </thead>
+                <tbody id="tb">
+
+                {% for row in user_list %}
+                    <form action="#" method="POST">
+                        <tr>
+                            <input  style='display: none' name='user_id' type='text' value='{{ row.id }}'>
+                            <td tag='id'>&nbsp;{{ row.id }}&nbsp;</td>
+                            <td tag='hostname'>&nbsp; {{ row.username }}&nbsp;</td>
+                            <td>
+                                <input type="submit"  class="submits" value="删除">|
+                            </td>
+                        </tr>
+                    </form>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+
+
+    </div>
+    <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+{#                <button type="button" class="btn btn-default" id="zj">增加</button>#}
+                <a href="/deluser"><input type="button" id="news" value="刷新"></a>
+                <a href=""><button type="button" class="gb">关闭</button></a>
+
+            </div>
+    </div>
+
+{% endblock %}
+
+<!--JS内容-->
+{% block js %}
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    //返回上面的页面
+       $('#tb tr td').delegate('.submits','click',function () {
+
+
+        })
+
+        $('.gb').click(function(){
+            window.close();
+        })
+    </script>
+{% endblock %}

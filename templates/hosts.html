@@ -1,0 +1,57 @@
+{% extends "master/mod.html" %}
+
+
+<!--左边菜单-->
+{% block left_menus %}
+
+{% endblock %}
+
+<!--中间内容-->
+{% block content %}
+    <div class="userh">
+    <h2>用户可以修改主机相关配置</h2>
+    </div>
+    <div class="hosts" style="margin-top: 70px;margin-left: 150px ">
+
+        {% for row in group_list %}
+            {% for foo in row.user %}
+                {% ifequal foo.username user.username %}
+                    <table border="1" id="tab">
+                    <caption>{{ row.groupname }}</caption>
+                    <thead>
+                    <tr>
+                        <th>选择</th>
+                        <th>主机名</th>
+                        <th>ip</th>
+                        <th>使用人</th>
+                        <th>操作</th>
+
+                    </tr>
+                    </thead>
+                    <tbody id="tb">
+
+                    {% for s in row.host %}
+                        <tr>
+                            <td><input type="checkbox" as='true'></td>
+                            <td tag='hostname'>&nbsp; {{ s.hostname }}&nbsp;</td>
+                            <td tag='ip'>&nbsp;{{ s.ip }}&nbsp;</td>
+                            <td tag='name'>&nbsp;{{ s.name }}&nbsp;</td>
+                            <td>
+                                <a href="/detail?nid={{ row.id }}" target="_blank">详情查看</a>|
+                                <a  class="modify" href="/user_modify?nid={{ row.id }}" row_id="{{ row.id }}">修改</a>
+{#                                <a class="del" href="#" row_id="{{ row.id }}">删除</a>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% endifequal %}
+            {% endfor %}
+        {% endfor %}
+        </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block botton %}
+
+{% endblock %}
+

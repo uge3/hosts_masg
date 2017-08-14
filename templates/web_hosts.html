@@ -1,0 +1,390 @@
+{% extends "master/mod.html" %}
+
+
+<!--左边菜单-->
+{% block left_menus %}
+    <aside class="left">
+			<div class="item">
+	            <div id="i1"  class="meuns">分组管理</div>
+		            <div class="meun_cent">
+		                <div><a href="/group_host" target="_blank">主机分组</a></div>
+{#		                <div><a href="/host_rem" target="_blank">主机移出</a></div>#}
+		                <div><a href="/group_user" target="_blank">用户分组</a></div>
+{#		                <div><a href="/user_rem" target="_blank">用户移出</a></div>#}
+		            </div>
+		        </div>
+
+	        <div class="item">
+	            <div id="i2"  class="meuns">设置</div>
+	            <div class="meun_cent hide">
+	                <div><a href="/addgroup" target="_blank">添加分组</a></div>
+	                <div><a href="/delgroup" target="_blank">删除分组</a></div>
+	                <div><a href="/adduser" target="_blank">添加用户</a></div>
+                    <div><a href="/deluser" target="_blank">删除用户</a></div>
+	                <div><a href="/adddet" target="_blank">添加配置</a></div>
+	                <div><a href="/deldet" target="_blank">删除配置</a></div>
+
+
+	            </div>
+	        </div>
+
+	        <div class="item">
+	            <div id="i3"  class="meuns">菜单3</div>
+	            <div class="meun_cent hide">
+	                <div>内容3</div>
+	                <div>内容3</div>
+	                <div>内容3</div>
+	                <div>内容3</div>
+	            </div>
+	        </div>
+
+	        <div class="item">
+	            <div id="i4" class="meuns">菜单4</div>
+	            <div class="meun_cent hide">
+	                <div>内容4</div>
+	                <div>内容4</div>
+	                <div>内容4</div>
+	                <div>内容4</div>
+
+	            </div>
+
+        	</div>
+
+		</aside>
+
+{% endblock %}
+
+
+<!--中间内容-->
+{% block content %}
+    <div class="hosts" style="margin-top: 70px;margin-left: 150px ">
+        <div class="right-menu">
+            <input type="button" id='add' value="添加">
+            <input type="button" id="all" value="全选">
+            <input type="button" id="remov" value="取消">
+            <input type="button" id="rest" value="反选">
+            <input type="button" id="dels" value="批量删除">
+            <a href="web_hosts.html"><input type="button" id="news" value="刷新"></a>
+        </div>
+
+        <table border="1" id="tab">
+            <thead>
+            <tr>
+                <th>选择</th>
+                <th>主机名</th>
+                <th>ip</th>
+                <th>分组</th>
+                <th>姓名</th>
+                <th>操作</th>
+
+            </tr>
+            </thead>
+            <tbody id="tb">
+
+            {% for row in host_list %}
+                <tr>
+                    <td><input type="checkbox" as='true'></td>
+                    <td tag='hostname'>&nbsp; {{ row.hostname }}&nbsp;</td>
+                    <td tag='ip'>&nbsp;{{ row.ip }}&nbsp;</td>
+
+                    <td tag='dep'>
+                        {% for i in row.group %}
+                            &nbsp;{{ i.groupname }}&nbsp;|
+                        {% endfor %}
+                    </td>
+
+                    <td tag='name'>&nbsp;{{ row.name }}&nbsp;</td>
+                    <td>
+                        <a href="/detail?nid={{ row.id }}" target="_blank">详情查看</a>|
+                        <a class="modify" href="/modify?nid={{ row.id }}" row_id="{{ row.id }}">修改</a>|
+                        <a class="del" href="#" row_id="{{ row.id }}">删除</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block botton %}
+    <!--遮罩层-->
+    <div class="c1 heds" id="z-cent"></div>
+
+    <!--删除主机-->
+    <div class="c3 heds" id="z-del">
+        <form action="/delhost/" method="GET" id="z-deltf">
+            <input  class="hide" type="text" name="nid" id="nid" value=""/>
+            <h3>是否删除所选的主机？是请按确定，否请按关闭</h3>
+            <p>
+                <input type="submit" value="确定"/>
+                <input class="del-cre" type="button" value="关闭"/>
+            </p>
+
+        </form>
+    </div>
+    <!--对话框 添加主机-->
+    <div class="c2 heds" id="z-first">
+        <form class="z-z" action="web_hosts.html" method="POST">
+            <lable>主&nbsp;机：</lable>
+            <input type="text" name="hostname" id="hosts" value=""><br/><br/>
+            <lable>I&nbsp;&nbsp;&nbsp;P：</lable>
+            <input type="text" name="ip" id="ips" value=""><br/><br/>
+            <lable>部&nbsp;门：</lable>
+            <input type="text" name="dep" id="deps" value=""><br/><br/>
+            <lable>职&nbsp;位：</lable>
+            <input type="text" name="position" id="positions" value=""><br/><br/>
+            <lable>姓&nbsp;名：</lable>
+            <input type="text" name="name" id="names" value=""><br/><br/>
+            <lable>M&nbsp;A&nbsp;C：</lable>
+            <input type="text" name="mac" id="macs" value=""><br/><br/>
+            <lable>位&nbsp;置：</lable>
+            <input type="text" name="location" id="locations" value=""><br/><br/>
+            <lable>配&nbsp;置：</lable>
+            <input type="text" name="detailed" id="detaileds" value=""><br/><br/>
+            <span>选择配置: </span>
+            <select name="" id="conf">
+                {% for row in conf_list %}
+                    <option value="{{ row.id}}">{{ row.id}}</option>
+                {% endfor %}
+            </select><br/><br/>
+            <hr/>
+            <input type="button" name="" id="cre" value="确定">
+            <input type="button" id="gb" value="关闭">
+        </form>
+
+    </div>
+
+
+
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+
+		//打开删除函数 对话框
+        $('#tb tr td'). delegate('.del','click',function(){
+            $('#z-cent,#z-del').removeClass('heds');//移除类名 样式
+            var row_id= $(this).attr("row_id");//获取当前行的ID
+            $('#nid').val(row_id);//赋值
+
+        })
+        //关闭删除对话框
+		$('.del-cre').click(function(){
+			$('#z-cent,#z-del').addClass('heds');//添加 类名 样式
+		})
+
+        $('#conf').click(function(){
+            v= $(this).val();
+            //alert(v)
+            $('#detaileds').val(v);//
+        })
+
+		//显示添加对话框
+		$('#add').click(function(){
+			$('#z-cent,#z-first').removeClass('heds');//移除类名 样式
+			$('.z-z input[type="text"]').val('');
+		})
+		//关闭添加对话框
+		$('#gb').click(function(){
+			$('#z-cent,#z-first').addClass('heds');//添加 类名 样式
+		})
+        //添加主机
+        $('#cre').click(function () {
+            var flag = true;//默认提交
+            $('.error').remove();//事先移除 提示标签
+            $('.z-z').find('input[type="text"]').each(function () {//查找 type=text 的input  循环判断
+                var v = $(this).val();//当前标签的值
+                if (v.length <= 0) {
+                    flag = false;//改为不能提交
+                    var tag = document.createElement('span');//创建一个标签
+                    tag.className = 'error';//添加一个类名
+                    tag.innerHTML = '不能为空';
+                    $(this).after(tag);
+                }
+            })
+            if (flag==true){
+                $('.z-z').submit();//提交表单
+            }
+        })
+
+
+        //单个勾选
+		$('#tb tr td').delegate('input[type="checkbox"]','click',function  () {
+			console.log($(this).prop('checked'));
+			if($('#ed').attr('as')&& $(this).prop('checked')){
+				edi_a(this);
+			}else if($('#ed').attr('as')&& $(this).prop('checked')==false){
+				edi_b(this);
+			}
+		})
+        //全选
+        $('#all').click(function (){
+			$(':checkbox').prop('checked',true).each(function () {
+
+				if ($('#ed').attr('as')&& $(this).attr('as')=='true') {//判断是否是编辑模式,,
+					edi_a(this);
+				}
+
+			});
+
+		})
+
+		//取消
+		$('#remov').click(function (){
+			$(':checkbox').prop('checked',false).each(function () {
+
+				if ($('#ed').attr('as')&& $(this).attr('as')=='false') {
+					edi_b(this);
+				}
+			})
+		})
+
+		//反选
+		//通过 each循环  三元运算  操作 写法
+		$('#rest').click(function (){
+			$('#tb :checkbox').each(function(){
+				var v=$(this).prop('checked')?false:true;//获取值
+				$(this).prop("checked",v);//赋于checkbox
+				if(v==true){//判断是否是勾选   勾选再进行判断
+					if ($('#ed').attr('as')&& $(this).attr('as')=='true') {//如果是编辑模式  并且 处于锁定状态
+						edi_a(this);//进入编辑
+					}
+
+				}else{
+					if ($('#ed').attr('as')&& $(this).attr('as')=='false') {//如果是编辑模式  并且 处于非锁定状态
+
+						edi_b(this);//退出编辑
+					}
+				}
+			})
+
+		})
+
+
+	</script>
+ {% endblock %}
+
+	
+	
+{#	<script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>#}
+{#	#}
+{#	<script type="text/javascript">#}
+{##}
+{#        //注销#}
+{#        $('#zx').click(function(){#}
+{#            $(this).submit()#}
+{#        })#}
+{#		#}
+{#		//删除函数#}
+{#        $('#tb tr td'). delegate('.del','click',function(){#}
+{#            $('#z-cent,#z-del').removeClass('heds');//移除类名 样式#}
+{#            var row_id= $(this).attr("row_id");//获取当前行的ID#}
+{#            $('#nid').val(row_id);//赋值#}
+{##}
+{#        })#}
+{#        //关闭#}
+{#        //关闭对话框#}
+{#		$('.del-cre').click(function(){#}
+{#			$('#z-cent,#z-del').addClass('heds');//添加 类名 样式#}
+{#		})#}
+{#		//单个勾选#}
+{#		$('#tb tr td').delegate('input[type="checkbox"]','click',function  () {#}
+{#			console.log($(this).prop('checked'));#}
+{#			if($('#ed').attr('as')&& $(this).prop('checked')){#}
+{#				edi_a(this);	#}
+{#			}else if($('#ed').attr('as')&& $(this).prop('checked')==false){#}
+{#				edi_b(this);#}
+{#			}#}
+{#		})#}
+{##}
+{#		#}
+{#		//左侧菜单js 点击函数	#}
+{#		$('.meuns').click(function(){#}
+{#			//当前点击的标签#}
+{#			$(this).next().removeClass('hide');//找到下一个标签  移除样式#}
+{#			$(this).parent().siblings().find('.meun_cent').addClass('hide')//获取父级,的同级所有兄弟标签 ,查找 其所有下级的类名,添加样式#}
+{#		})#}
+{#		#}
+{#		//返回顶部#}
+{#		function topy(){#}
+{#			document.body.scrollTop=0;#}
+{#		}#}
+{#		#}
+{#		//显示对话框#}
+{#		$('#add').click(function(){#}
+{#			$('#z-cent,#z-first').removeClass('heds');//移除类名 样式#}
+{#			$('.z-z input[type="text"]').val('');#}
+{#		})#}
+{#		#}
+{#		//关闭对话框	#}
+{#		$('#gb').click(function(){#}
+{#			$('#z-cent,#z-first').addClass('heds');//添加 类名 样式#}
+{#		})#}
+{#		#}
+{#        //添加主机 IP        #}
+{#        $('#cre').click(function () {#}
+{#            var flag = true;//默认提交#}
+{#            $('.error').remove();//事先移除 提示标签#}
+{#            $('.z-z').find('input[type="text"]').each(function () {//查找 type=text 的input  循环判断#}
+{#                var v = $(this).val();//当前标签的值#}
+{#                if (v.length <= 0) {#}
+{#                    flag = false;//改为不能提交#}
+{#                    var tag = document.createElement('span');//创建一个标签#}
+{#                    tag.className = 'error';//添加一个类名#}
+{#                    tag.innerHTML = '不能为空';#}
+{#                    $(this).after(tag);#}
+{#                }#}
+{#            })#}
+{#            if (flag==true){#}
+{#                $('.z-z').submit()//提交表单#}
+{#            }#}
+{#        })#}
+{#      #}
+{##}
+{##}
+{#        //全选#}
+{#        $('#all').click(function (){#}
+{#			$(':checkbox').prop('checked',true).each(function () {#}
+{#				#}
+{#				if ($('#ed').attr('as')&& $(this).attr('as')=='true') {//判断是否是编辑模式,, #}
+{#					edi_a(this);#}
+{#				}#}
+{#				#}
+{#			});#}
+{#			#}
+{#		})#}
+{#			#}
+{#		//取消#}
+{#		$('#remov').click(function (){#}
+{#			$(':checkbox').prop('checked',false).each(function () {#}
+{#				#}
+{#				if ($('#ed').attr('as')&& $(this).attr('as')=='false') {#}
+{#					edi_b(this);#}
+{#				}#}
+{#			})#}
+{#		})#}
+{#		#}
+{#		//反选 #}
+{#		//通过 each循环  三元运算  操作 写法#}
+{#		$('#rest').click(function (){#}
+{#			$('#tb :checkbox').each(function(){#}
+{#				var v=$(this).prop('checked')?false:true;//获取值   					#}
+{#				$(this).prop("checked",v);//赋于checkbox #}
+{#				if(v==true){//判断是否是勾选   勾选再进行判断 #}
+{#					if ($('#ed').attr('as')&& $(this).attr('as')=='true') {//如果是编辑模式  并且 处于锁定状态#}
+{#						edi_a(this);//进入编辑#}
+{#					}#}
+{#				#}
+{#				}else{#}
+{#					if ($('#ed').attr('as')&& $(this).attr('as')=='false') {//如果是编辑模式  并且 处于非锁定状态#}
+{#						#}
+{#						edi_b(this);//退出编辑#}
+{#					}#}
+{#				}#}
+{#			})#}
+{#			#}
+{#		})#}
+{#        #}
+{#        #}
+{#	</script>#}
+    

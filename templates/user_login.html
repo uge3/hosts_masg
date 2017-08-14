@@ -1,0 +1,73 @@
+{% extends "master/mod_login.html" %}
+
+    <!--左边-->
+    {% block logo_img %}
+        <div class="rest_left">
+            <a href="#">
+                <img src="/static/img/timg.jpg" alt="">
+
+            </a>
+            <p><a href="/index" id="indexs"> 主页  </a>  用户登陆</p>
+        </div>
+    {% endblock %}
+
+    <!--右边-->
+    {% block logins %}
+
+        <div class="rest_right">
+            <form action="login.html" method="POST">
+                <div class="users">
+                    <div class="sp">
+                        <label><span>*</span>用户名：</label>
+                    </div>
+                    <div class="users_user">
+                        <input type="text" name="user" id="" value=""/>
+                        <samp id="img-user"></samp>
+                    </div>
+                </div>
+
+                <div class="users">
+                    <div class="sp">
+                        <label><span>*</span>密码：</label>
+                    </div>
+                    <div class="users_user">
+                        <input type="password" name="pwd" id="" value=""/>
+                        <samp id="img-pwd"></samp>
+                    </div>
+                </div>
+
+                <div class="users">
+                    <div class="sp">
+                        <label><span>*</span>验证码：</label>
+                    </div>
+                    <div class="users_user" id="yzmdiv">
+                        <input type="text" name="yzmr" id="yzm" value=""/>
+                        <span id="img_yzm">
+                            <input type="text" name="yzma" id="yzm_b" value="">
+                            <a id="yzm_a" href="/user_login.html"></a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="users ">
+                    <div class="sp sp-1">
+                    </div>
+                    <div class="users_user ">
+                        <input type="checkbox" name="" class="auto_left" id="check_left" value=""/>
+                        <span class="auto_left" id="auto_logo">自动登陆</span>
+                        <a href="#" class="auto_left">忘记密码</a>
+                    </div>
+                </div>
+
+                <div class="users">
+                    <div class="sp sp-1">
+                    </div>
+                    <div class="users_user" id="logoing">
+                        <input type="submit" value="登陆">
+                    </div><span id="span1">{{ error_msg }}</span>
+                </div>
+            </form>
+
+            <div class="rest-q"><a href="注册页面.html" target="_blank">免费注册》</a></div>
+        </div>
+    {% endblock %}

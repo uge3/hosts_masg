@@ -1,0 +1,293 @@
+body{
+    margin: 0;
+}
+
+a{
+    /*去下划线*/
+    text-decoration: none;
+}
+/*左浮动*/
+.left{
+    float: left;
+}
+/*右浮动*/
+.right{
+    float: right;
+}
+/*默认隐藏*/
+.hide{
+    display: none;
+}
+
+/*顶部菜单*/
+nav{
+    position: absolute;
+    z-index: 7;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 48px;
+    width: 100%;
+    background: #005EA7;
+
+}
+/*顶部LOGO*/
+nav .logo{
+    position: relative;
+    text-align: center;
+    color: white;
+    width: 200px;
+    height: 48px;
+    /*background-color: #004AE7;*/
+}
+.logo img{
+    width: 200px;
+    height:48px;
+    margin: 0;
+    padding: 0;
+}
+.meun_top{
+    height: 48px;
+    line-height: 48px;
+    width: 960px;
+    /*border: 1px solid red;*/
+    margin: 0 auto;
+}
+    /*顶部菜单组*/
+.meuns_top{
+    text-decoration: none;
+    color: white;
+    padding: 0px 10px 0px 10px;
+    display: inline-block;
+}
+.meuns_top:hover{
+    background-color: rgba(64,119,203,0.6);
+}
+/*用户信息大框开始*/
+nav .user{
+    width: 160px;
+    height: 48px;
+    position: relative;
+}
+/*右边个人信息*/
+#a-img img{
+    margin-top: 4px;
+    width: 40px;
+    height: 40px;
+    /*边框角度*/
+    border-radius: 50px;
+    line-height: 48px;
+}
+
+/*鼠标移动显示*/
+nav .user:hover .user-menu {
+    display:block;
+}
+nav .user .user-menu a{
+    margin-left: 10px;
+    display: block;
+}
+.clear_div{
+    clear: both;
+}
+/*隐藏的信息框*/
+nav .user .user-menu{
+    position: absolute;
+    z-index: 20;
+    top: 48px;
+    left: 0;
+    background-color: rgba(0,100,200,0.5);
+    width: 140px;
+    display: none;
+}
+/*注销按钮*/
+.user-menu #submit{
+    margin-left: 10px;
+    width: 50px;
+    height: 30px;
+    line-height: 30px;
+    font-size:12px;
+    padding: 0;
+}
+
+/*用户信息大框结束*/
+
+/*顶部菜单结束*/
+
+
+/*下方大框*/
+.pag-cent{
+    margin-top: 50px;
+
+}
+
+
+/*左侧菜单*/
+/*左侧边栏菜单*/
+aside{
+    /*屏幕绝对定位 开启*/
+    position: absolute;
+    top: 48px;
+    left: 0;
+    bottom: 0;
+    width: 200px;
+    background-color: rgba(100,200,100,0.5)
+}
+.left-meun{
+    z-index: 8;
+    position: fixed;
+    top: 50px;
+    left: 55px;
+}
+.meuns{
+
+    background-color: #005EA7;
+    height: 45px;
+    width:200px;
+    color:white;
+    line-height: 45px;
+    text-align: center;
+}
+.meuns:hover{
+    background-color: rgba(64,119,203,0.6);
+}
+/*左侧菜单子项*/
+.meun_cent{
+    margin-left: 50%;
+}
+.meun_cent div{
+    margin: 10px;
+}
+.item{
+    width:180px;
+}
+/*左侧菜单结束*/
+
+/*下方右边内容块*/
+.userh{
+    margin-left: 150px;
+    margin-top: 50px;
+}
+/*右边内容*/
+.content{
+    position: absolute;
+    top: 48px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(100,200,200,0.5);
+    /*最小宽度*/
+    min-width: 780px;
+    overflow: auto;
+
+}
+.big-content{
+    height: 1000px;
+    border: 1px solid green;
+}
+/*中间右边内容*/
+.content_right{
+    /*position: relative;*/
+    margin: 0 auto;
+    height: 800px;
+    width: 960px;
+    /*border: 1px solid blueviolet;*/
+}
+
+.hosts{
+    margin-left: 30px;
+    margin-top: 20px;
+}
+table{
+    border-spacing: 1px;
+    margin-top: 8px;
+    }
+
+
+/*遮罩层*/
+.c1{
+    position: fixed;
+    z-index: 9;
+    /*打开多层样式 fixed模式 定义层级为9*/
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    /*上面表示全覆盖*/
+    background-color: black;
+    /*上面为背景色 为黑  下面为透明度为50%*/
+    opacity: 0.5;
+}
+
+/*最上层对话框*/
+.c2,.c3,.c4{
+   position: fixed;
+   z-index: 10;
+    /*打开多层样式 fixed模式 定义层级为9*/
+
+    width:400px;
+    height: 600px;
+    top:50%;
+    left:50%;
+    margin-left: -200px;
+    margin-top: -250px;
+    background-color: white;
+}
+/*删除对话框*/
+.c3{
+    height: 300px;
+}
+.z-z,#z-deltf{
+    width: 230px;
+    height: 120px;
+    margin-top: 90px;
+    margin-left: 90px;
+}
+
+.error{
+    color: red;
+}
+hr{
+    width: 230px;
+}
+#cre{
+    margin-left: 70px;
+}
+.heds{
+    /*默认不显示*/
+    display: none;
+}
+
+.right-menu{
+    width: 320px;
+    height: 30px;
+    line-height: 30px;
+}
+.edits{
+    float: right;
+    border: 1px solid darkgray;
+    padding: 2px;
+    background-color: #A9A9A9;
+    font-size: 9px;
+}
+.edits-2{
+    background-color: orange;
+}
+
+.option-ol{
+
+}
+/*下方右边内容块结束*/
+
+
+/*返回顶部*/
+.pa-top{
+    width: 68px;
+    height: 48px;
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    background-image: url(../img/top.png);
+    background-position: -425px -270px ;
+
+}

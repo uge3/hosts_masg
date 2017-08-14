@@ -1,0 +1,66 @@
+{% extends "master/mod.html" %}
+
+{% block title %}
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+{#    <link rel="stylesheet" href="/static/jquery-easyui-1.5.2/themes/default/easyui.css">#}
+{#    <link rel="stylesheet" href="/static/jquery-easyui-1.5.2/themes/icon.css>#}
+{% endblock %}
+
+
+{#中间的内容#}
+{% block content %}
+
+    <h2>主机详细情况</h2>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>主机名</th>
+            <th>ip</th>
+            <th>部门</th>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>MAC</th>
+            <th>位置</th>
+            <th>配置</th>
+            <th>分组</th>
+        </tr>
+        </thead>
+         <tbody id="tb">
+                <tr>
+                    <td tag='hostname'>&nbsp; {{ host_list.id }}&nbsp;</td>
+                    <td tag='hostname'>&nbsp; {{ host_list }}&nbsp;</td>
+                    <td tag='ip'>&nbsp;{{ host_list.ip }}&nbsp;</td>
+                    <td tag='dep'>&nbsp;{{ host_list.dep }}&nbsp;</td>
+                    <td tag='name'>&nbsp;{{ host_list.name }}&nbsp;</td>
+                    <td tag='position'>&nbsp;{{ host_list.position }}&nbsp;</td>
+                    <td tag='MAC'>&nbsp;{{ host_list.MAC }}&nbsp;</td>
+                    <td tag='location'>&nbsp;{{ host_list.location }}&nbsp;</td>
+                    <td tag='detailed_id'>&nbsp;{{ host_list.detailed_id }}&nbsp;</td>
+
+                    <td tag='group'>
+                        {% for i in host_list.group %}
+                        &nbsp;{{ i.groupname }}&nbsp;
+                        {% endfor %}
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+    <input type="button" class="gb" value="关闭">
+
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        $('.gb').click(function(){
+            window.close();
+        })
+    </script>
+{% endblock %}

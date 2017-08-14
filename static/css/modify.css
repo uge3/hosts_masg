@@ -1,0 +1,12 @@
+#tb input{
+    width:80px;
+}
+#tb td[tag='MAC'] input{
+    width:150px;
+}
+#tb td[tag='id'] input{
+    width:30px;
+}
+#tb td[tag='ip'] input{
+    width:120px;
+}

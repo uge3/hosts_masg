@@ -1,0 +1,74 @@
+{% extends "master/mod.html" %}
+
+{% block title %}
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+{#    <link rel="stylesheet" href="/static/jquery-easyui-1.5.2/themes/default/easyui.css">#}
+{#    <link rel="stylesheet" href="/static/jquery-easyui-1.5.2/themes/icon.css>#}
+    <link rel="stylesheet" href="/static/css/modify.css">
+{% endblock %}
+{#中间的内容#}
+{% block content %}
+<h2>主机信息修改</h2>
+        <h6 style="color: red;">确定修改请点修改,否则请点关闭</h6>
+    <form action="/modify" method="POST" id="z-z">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>主机名</th>
+            <th>ip</th>
+            <th>部门</th>
+            <th>姓名</th>
+            <th>职位</th>
+            <th>MAC</th>
+            <th>位置</th>
+            <th>当前配置</th>
+            <th>配置修改</th>
+        </tr>
+        </thead>
+         <tbody id="tb">
+
+                <tr>
+                    <td tag='id'><input name="id" type="text" style="display: none" value="{{ host_list.id }}"><span>{{ host_list.id }}</span></td>
+                    <td tag='hostname'><input name="hostname" type="text" value="{{ host_list }}"></td>
+                    <td tag='ip'><input name="ip" type="text" value="{{ host_list.ip }}"></td>
+                    <td tag='dep'><input name="dep" type="text" value=" {{ host_list.dep }}" ></td>
+                    <td tag='name'><input name="name" type="text" value="{{ host_list.name }}" ></td>
+                    <td tag='position'><input name="position" type="text" value="{{ host_list.position }}"></td>
+                    <td tag='MAC'><input name="mac" type="text" value="{{ host_list.MAC }}"></td>
+                    <td tag='location'><input name="location" type="text" value="{{ host_list.location }}"></td>
+                    <td tag='detailed_id'><input name="detaled_id" id="detaled_id"  type="text" value="{{ host_list.detailed_id }}"></td>
+                    <td>
+                        <select name="" id="conf">
+                            {% for row in conf_list %}
+                                <option value="{{ row.id}}">{{ row.id}}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                </tr>
+
+
+        </tbody>
+    </table>
+        <input class="submits" type="submit" id="submits" value="修改">
+        <input class="fh" type="button" value="返回">
+    </form>
+{% endblock %}
+{% block js %}
+
+    <script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/jquery-easyui-1.5.2/jquery.easyui.min.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+    $('#conf').click(function(){
+        v= $(this).val();
+        //alert(v)
+        $('#detaled_id').val(v);//
+    })
+
+    //返回上面的页面
+        $('.fh').click(function(){
+            window.location.href="web_hosts"
+        })
+    </script>
+{% endblock %}
